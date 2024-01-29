@@ -40,35 +40,31 @@ export class GameMode {
                 myString: "Hello!",
                 myArrayOfNumbers: [1.414, 2.718, 3.142]
             });
-
-            // Also apply the panic modifier to the sending player's hero
-            const hero = player.GetAssignedHero();
-            hero.AddNewModifier(hero, undefined, modifier_panic.name, { duration: 5 });
         });
     }
 
     private configure(): void {
-        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.GOODGUYS, 3);
-        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.BADGUYS, 3);
+        // GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.GOODGUYS, 3);
+        // GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.BADGUYS, 3);
 
-        GameRules.SetShowcaseTime(0);
-        GameRules.SetHeroSelectionTime(heroSelectionTime);
+        // GameRules.SetShowcaseTime(0);
+        // GameRules.SetHeroSelectionTime(heroSelectionTime);
     }
 
     public OnStateChange(): void {
         const state = GameRules.State_Get();
 
         // Add 4 bots to lobby in tools
-        if (IsInToolsMode() && state == GameState.CUSTOM_GAME_SETUP) {
-            for (let i = 0; i < 4; i++) {
-                Tutorial.AddBot("npc_dota_hero_lina", "", "", false);
-            }
-        }
+        // if (IsInToolsMode() && state == GameState.CUSTOM_GAME_SETUP) {
+        //     for (let i = 0; i < 4; i++) {
+        //         Tutorial.AddBot("npc_dota_hero_lina", "", "", false);
+        //     }
+        // }
 
         if (state === GameState.CUSTOM_GAME_SETUP) {
             // Automatically skip setup in tools
             if (IsInToolsMode()) {
-                Timers.CreateTimer(3, () => {
+                Timers.CreateTimer(1, () => {
                     GameRules.FinishCustomGameSetup();
                 });
             }
@@ -94,14 +90,14 @@ export class GameMode {
     }
 
     private OnNpcSpawned(event: NpcSpawnedEvent) {
-        // After a hero unit spawns, apply modifier_panic for 8 seconds
-        const unit = EntIndexToHScript(event.entindex) as CDOTA_BaseNPC; // Cast to npc since this is the 'npc_spawned' event
-        // Give all real heroes (not illusions) the meepo_earthbind_ts_example spell
-        if (unit.IsRealHero()) {
-            if (!unit.HasAbility("meepo_earthbind_ts_example")) {
-                // Add lua ability to the unit
-                unit.AddAbility("meepo_earthbind_ts_example");
-            }
-        }
+        // // After a hero unit spawns, apply modifier_panic for 8 seconds
+        // const unit = EntIndexToHScript(event.entindex) as CDOTA_BaseNPC; // Cast to npc since this is the 'npc_spawned' event
+        // // Give all real heroes (not illusions) the meepo_earthbind_ts_example spell
+        // if (unit.IsRealHero()) {
+        //     if (!unit.HasAbility("meepo_earthbind_ts_example")) {
+        //         // Add lua ability to the unit
+        //         unit.AddAbility("meepo_earthbind_ts_example");
+        //     }
+        // }
     }
 }

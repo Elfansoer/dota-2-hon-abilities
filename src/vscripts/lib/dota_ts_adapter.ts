@@ -12,8 +12,26 @@ export class BaseModifier {
         caster?: CDOTA_BaseNPC,
         ability?: CDOTABaseAbility,
         modifierTable?: object,
-    ): InstanceType<T> {
+    ): InstanceType<T> | undefined {
         return target.AddNewModifier(caster, ability, this.name, modifierTable) as any;
+    }
+    public static thinker<T extends typeof BaseModifier>(
+        this: T,
+        origin: Vector,
+        phantomBlocker: boolean,
+        caster?: CDOTA_BaseNPC,
+        ability?: CDOTABaseAbility,
+        modifierTable?: object,
+    ): {
+        thinker: CDOTA_BaseNPC,
+        modifier: InstanceType<T>,
+    } {
+        const thinker = CreateModifierThinker( caster,ability,this.name,modifierTable,origin,caster?.GetTeamNumber() ?? DotaTeam.NOTEAM,phantomBlocker );
+        const modifier = thinker.FindModifierByName( this.name ) as InstanceType<T>;
+        return { thinker, modifier };
+    }
+    public static find<T extends typeof BaseModifier>(this: T, unit: CDOTA_BaseNPC | undefined): InstanceType<T> | undefined {
+        return unit?.FindModifierByName( this.name ) as any;
     }
 }
 

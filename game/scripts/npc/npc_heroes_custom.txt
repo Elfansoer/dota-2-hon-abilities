@@ -1,0 +1,7 @@
+// Custom heroes
+#base "heroes/luna.kv" 			// Lina
+#base "heroes/ellonia.kv" 		// Custom, ID: 200
+
+"DOTAHeroes"
+{
+}

@@ -1,0 +1,55 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Lina: Laguna Blade (TypeScript version)
+	//=================================================================================================================
+	"lina_laguna_blade_ts"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/lina_laguna_blade_ts"
+		"AbilityTextureName"			"lina_laguna_blade"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.45 0.45 0.45"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"70 60 50"
+		"AbilityManaCost"				"280 420 680"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"pure_damage"
+			{
+				"value"								"0"
+				"special_bonus_scepter"				"=1"
+			}
+			"pierce_immune"
+			{
+				"value"								"0"
+				"special_bonus_scepter"				"=1"
+			}
+			"damage"					"450 650 850"
+			"damage_delay"				"0.25"
+		}
+	}
+}

@@ -1,4 +1,11 @@
-#base "heroes/meepo.kv"
+#base "abilities/lina_dragon_slave_ts.kv"
+#base "abilities/lina_light_strike_array_ts.kv"
+#base "abilities/lina_laguna_blade_ts.kv"
+
+#base "abilities/ellonia_glacial_spike.kv"
+#base "abilities/ellonia_frigid_field.kv"
+#base "abilities/ellonia_flash_freeze.kv"
+#base "abilities/ellonia_absolute_zero.kv"
 
 "DOTAAbilities"
 {
