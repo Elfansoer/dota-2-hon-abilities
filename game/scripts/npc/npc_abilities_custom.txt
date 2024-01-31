@@ -1,4 +1,7 @@
-#base "heroes/meepo.kv"
+#base "abilities/ellonia_glacial_spike.kv"
+#base "abilities/ellonia_frigid_field.kv"
+#base "abilities/ellonia_flash_freeze.kv"
+#base "abilities/ellonia_absolute_zero.kv"
 
 "DOTAAbilities"
 {

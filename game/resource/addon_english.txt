@@ -1,0 +1,15 @@
+"lang"
+{
+	"Language"		"English"
+	"Tokens"
+	{		
+		"addon_game_name"			"Lua Abilities and Modifiers"
+
+		//-------------------------------------------------------------------------------------------------------------
+		// Hero Ellonia
+		//-------------------------------------------------------------------------------------------------------------
+		"npc_dota_hero_ellonia"				"Ellonia"
+		"npc_dota_hero_ellonia_npedesc1"	"Conjures frost magic."
+
+	}
+}

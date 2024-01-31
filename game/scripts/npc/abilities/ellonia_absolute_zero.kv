@@ -1,0 +1,58 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Ellonia: Absolute Zero
+	//=================================================================================================================
+	"ellonia_absolute_zero"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/ellonia_absolute_zero"
+		"AbilityTextureName"			"ellonia_absolute_zero"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		
+		"HasScepterUpgrade"				"1"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.25"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100 80 60"
+		"AbilityManaCost"				"150 200 250"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			// tooltip ordering will follow this order
+			"duration"					"2.4"
+			"radius"					"400"
+			"interval"					"0.1 0.08 0.06"
+			"damage"					"40"
+			"frosted_count"				"1"
+			"frosted_duration"			"4"
+			"should_return"
+			{
+				"value"								"0"
+				"special_bonus_scepter"				"=1"
+			}
+		}
+	}
+}

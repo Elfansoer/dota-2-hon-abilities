@@ -2,6 +2,7 @@ import { BaseAbility } from "./dota_ts_adapter";
 
 export type ExtendedLinearProjectileData = CreateLinearProjectileOptions & {
     populateDefaultValues?: boolean,
+    vDirection?: Vector,
     fRadius?: number,
     fSpeed?: number,
     SoundName?: string,
@@ -83,18 +84,29 @@ export class ExtendedAbility extends BaseAbility {
     }
 
     CreateLinearProjectile(elpd: ExtendedLinearProjectileData) {
-        // populating default data
         if (elpd.populateDefaultValues==true) {
+            // populating default data
             elpd.Ability ??= this;
             elpd.Source ??= this.caster;
             elpd.vSpawnOrigin ??= this.caster.GetOrigin();
+
+            elpd.fDistance ??= 100;
+            elpd.vDirection ??= this.GetCastDirection();
+            elpd.fSpeed ??= 0;
+            elpd.fRadius ??= 0;
+
             elpd.iUnitTargetTeam ??= this.GetAbilityTargetTeam();
             elpd.iUnitTargetType ??= this.GetAbilityTargetType();
             elpd.iUnitTargetFlags ??= this.GetAbilityTargetFlags();
-            elpd.fDistance ??= 100;
-            elpd.fStartRadius ??= elpd.fRadius ?? 0;
-            elpd.fEndRadius ??= elpd.fRadius ?? 0;
-            elpd.vVelocity ??= (elpd.fSpeed ?? 0) * this.GetCastDirection() as Vector;    
+
+            elpd.fStartRadius ??= elpd.fRadius;
+            elpd.fEndRadius ??= elpd.fRadius;
+            elpd.vVelocity ??= elpd.fSpeed * elpd.vDirection as Vector;    
+        } else {
+            // only syntax sugars
+            elpd.fStartRadius ??= elpd.fRadius;
+            elpd.fEndRadius ??= elpd.fRadius;
+            elpd.vVelocity ??= (elpd.fSpeed ?? 0) * (elpd.vDirection ?? this.GetCastDirection()) as Vector;    
         }
 
         // create projectile and thinker for sound
@@ -182,10 +194,11 @@ export class ExtendedAbility extends BaseAbility {
         }
 
         // run projectile think
-        if (info.nextThinkTime >= GameRules.GetGameTime()) {
+        const now = GameRules.GetGameTime();
+        if (now >= info.nextThinkTime ) {
             let nextTime = info.OnProjectileThink(location);
             nextTime = nextTime==0 ? FrameTime() : nextTime;
-            info.nextThinkTime = GameRules.GetGameTime() + nextTime;
+            info.nextThinkTime = now + nextTime;
         };
     }
 
