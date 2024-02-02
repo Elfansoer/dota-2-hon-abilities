@@ -11,6 +11,10 @@ export class empath_synergy extends ExtendedAbility {
 
 @registerModifier()
 export class modifier_empath_synergy_aura extends ExtendedAbilityModifier {
+    IsHidden() {
+        return true;
+    }
+    
     IsAura() {
         return true;
     }
@@ -36,6 +40,7 @@ export class modifier_empath_synergy_aura extends ExtendedAbilityModifier {
     }
 }
 
+@registerModifier()
 export class modifier_empath_synergy extends ExtendedAbilityModifier {
     baseRegen = this.V( "base_regen" );
     pctRegen = this.V( "pct_regen" );

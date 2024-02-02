@@ -93,4 +93,5 @@
 	"npc_dota_hero_rubick"			"1"
 
 	"npc_dota_hero_ellonia"			"1"
+	"npc_dota_hero_empath"			"1"
 }

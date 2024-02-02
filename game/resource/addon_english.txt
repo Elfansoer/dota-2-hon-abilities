@@ -11,5 +11,11 @@
 		"npc_dota_hero_ellonia"				"Ellonia"
 		"npc_dota_hero_ellonia_npedesc1"	"Conjures frost magic."
 
+		//-------------------------------------------------------------------------------------------------------------
+		// Hero Empath
+		//-------------------------------------------------------------------------------------------------------------
+		"npc_dota_hero_empath"				"Empath"
+		"npc_dota_hero_empath_npedesc1"		"Links to enemies or allies."
+
 	}
 }
