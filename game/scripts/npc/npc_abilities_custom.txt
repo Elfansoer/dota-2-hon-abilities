@@ -3,6 +3,11 @@
 #base "abilities/ellonia_flash_freeze.kv"
 #base "abilities/ellonia_absolute_zero.kv"
 
+#base "abilities/empath_essence_link.kv"
+#base "abilities/empath_illusory_veil.kv"
+#base "abilities/empath_synergy.kv"
+#base "abilities/empath_as_one.kv"
+
 "DOTAAbilities"
 {
 }

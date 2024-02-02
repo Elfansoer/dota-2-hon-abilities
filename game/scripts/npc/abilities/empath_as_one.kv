@@ -1,0 +1,65 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Empath: As One
+	//=================================================================================================================
+	"empath_as_one"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/empath_as_one"
+		"AbilityTextureName"			"empath_as_one"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		
+		// "HasShardUpgrade"				"1"
+		"HasScepterUpgrade"				"1"
+		// "IsGrantedByScepter"				"1"
+		// "IsGrantedByShard"				"1"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS | DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150 200 250"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"100 80 60"
+				"special_bonus_scepter"				"=30"
+			}
+
+			// tooltip ordering will follow this order
+			"duration"					"30"
+			"mana_regen"				"1"
+			"bonus_speed"				"30 45 60"
+			"bonus_damage"				"35 55 75"
+			"follow_distance"			"75"
+
+			"give_scepter"
+			{
+				"value"								"0"
+				"special_bonus_scepter"				"=1"
+			}
+		}
+	}
+}
