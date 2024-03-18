@@ -1,4 +1,28 @@
 export namespace ParticleEffect {
+    function ReturnValue<T>( fxid: ParticleID, modifyFunction: (options: T)=>void = ()=>{}, overhead: boolean = false ) {
+        let destroyed = false;
+        return {
+            fxid,
+            attach: (buff: CDOTA_Buff | undefined)=>{
+                buff?.AddParticle(
+                    fxid,
+                    false,
+                    false,
+                    -1,
+                    false,
+                    overhead
+                )
+            },
+            modify: modifyFunction,
+            destroy: (immediate: boolean = false)=>{
+                if (!destroyed) {
+                    ParticleManager.DestroyParticle(fxid,immediate);
+                    ParticleManager.ReleaseParticleIndex(fxid);
+                }
+            }
+        } as const;
+    }
+
     export function GenericAreaPulse( options: {point: Vector, radius: number} ) {
         const fxName = "particles/units/heroes/hero_dark_willow/dark_willow_leyconduit_marker_helper.vpcf";
         const pfx = ParticleManager.CreateParticle( fxName, ParticleAttachment.WORLDORIGIN, undefined );
@@ -18,21 +42,14 @@ export namespace ParticleEffect {
         ParticleManager.ReleaseParticleIndex( fxid );
     }
 
-    export function CrystalMaidenFrostBite( options: { fxName?: string, modifier: CDOTA_Buff} ) {
+    export function CrystalMaidenFrostBite( options: { fxName?: string, target: CDOTA_BaseNPC} ) {
         const fxid = ParticleManager.CreateParticle(
             options.fxName ?? "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf",
             ParticleAttachment.ABSORIGIN_FOLLOW,
-            options.modifier.GetParent(),
+            options.target,
         );
 
-        options.modifier.AddParticle(
-            fxid,
-            false,
-            false,
-            -1,
-            false,
-            false
-        )
+        return ReturnValue(fxid);
     }
 
     export function LinaLightStrikeArrayInit( options: { fxName?: string, caster: CDOTA_BaseNPC, point: Vector, radius: number} ) {
@@ -83,5 +100,35 @@ export namespace ParticleEffect {
             true
         );
         ParticleManager.ReleaseParticleIndex( fxid );
+    }
+
+    export function LionManaDrain( options: { fxName?: string, caster: CDOTA_BaseNPC, target: CDOTA_BaseNPC} ) {
+        const baseName = "particles/units/heroes/hero_lion/lion_spell_mana_drain.vpcf"
+
+        const fxid = ParticleManager.CreateParticle(
+            options.fxName ?? baseName,
+            ParticleAttachment.ABSORIGIN_FOLLOW,
+            options.target
+        );
+        ParticleManager.SetParticleControlEnt(
+            fxid,
+            0,
+            options.target,
+            ParticleAttachment.POINT_FOLLOW,
+            "attach_hitloc",
+            Vector(0,0,0),
+            true
+        )
+        ParticleManager.SetParticleControlEnt(
+            fxid,
+            1,
+            options.caster,
+            ParticleAttachment.POINT_FOLLOW,
+            "attach_mouth",
+            Vector(0,0,0),
+            true
+        )
+
+        return ReturnValue(fxid);
     }
 }

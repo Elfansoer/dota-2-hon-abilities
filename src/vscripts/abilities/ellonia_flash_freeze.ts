@@ -45,7 +45,7 @@ export class ellonia_flash_freeze extends ExtendedAbility {
             {duration: stun}
         );
 
-        ParticleEffect.CrystalMaidenFrostBite({modifier: stunModifier});
+        ParticleEffect.CrystalMaidenFrostBite({target: targetUnit}).attach(stunModifier);
     }
 }
 

@@ -1,6 +1,7 @@
 import { registerAbility, registerModifier } from "../lib/dota_ts_adapter";
 import { ExtendedAbility } from "../lib/extended_ability";
 import { ExtendedAbilityModifier } from "../lib/extended_modifier";
+import { ParticleEffect } from "../lib/particle_effects";
 import { modifier_empath_as_one_self } from "./empath_as_one";
 
 @registerAbility()
@@ -12,12 +13,14 @@ export class empath_essence_link extends ExtendedAbility {
     OnSpellStart(): void {
         const targetUnit = this.GetCursorTarget()!;
         const duration = this.V( "duration" );
-        modifier_empath_essence_link.apply(
+        const debuff = modifier_empath_essence_link.apply(
             targetUnit,
             this.caster,
             this,
             {duration}
         );
+
+        ParticleEffect.LionManaDrain({caster: this.caster, target: targetUnit}).attach(debuff);
     }
 }
 
